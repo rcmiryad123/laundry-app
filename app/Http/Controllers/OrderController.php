@@ -7,6 +7,19 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        try {
+            $orders = Order::select('id', 'billing_name', 'package', 'status', 'dead_line', 'process_method', 'total_kilos')
+                ->where('status', 'Not Finished')
+                ->orderBy('dead_line', 'asc')
+                ->get();
+
+            return response()->json($orders);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
     public function getOrdersNotFinish()
     {
         try {

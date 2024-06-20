@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TopbarController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PaketLaundryController;
+
+Auth::routes();
 
 // Rute untuk halaman utama
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
@@ -22,7 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/{orderId}', [OrderController::class, 'getOrderDetails']);
 
     // Rute untuk logout
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    // Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    // Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 
     // Rute Paket Laundry
     Route::get('/paket-laundry/{nama_paket}', [PaketLaundryController::class, 'getByNamaPaket']);

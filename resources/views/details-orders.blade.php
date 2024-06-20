@@ -28,11 +28,83 @@
     </div>
     <!-- end row -->
 
-    <!-- Modal Add New Order -->
+    <!-- Extra Large modal example -->
     <div class="modal fade add-new-order" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
         aria-hidden="true">
-        <!-- Isi modal add new order di sini -->
-    </div>
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('orders.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myExtraLargeModalLabel">Add New Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input type="hidden" id="order-date" style="display: none;">
+
+                                    <label class="form-label" for="AddOrder-Product">Pilih Paket</label>
+                                    <select class="form-select" name="package">
+                                        <option selected disabled> Pilih Paket </option>
+                                        <option value="paket-1">Paket 1 - Rp. 10.000/kg</option>
+                                        <option value="paket-2">Paket 2 - Rp. 20.000/kg</option>
+                                        <option value="paket-3">Paket 3 - Rp. 30.000/kg</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddOrder-Billing-Name">Nama Pemesan</label>
+                                    <input type="text" class="form-control" placeholder="Masukan Nama Pemesan"
+                                        id="AddOrder-Billing-Name" name="billing_name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddOrder-TotalKilos">Total Berat</label>
+                                    <input type="number" class="form-control" placeholder="6.86 kg"
+                                        id="AddOrder-TotalKilos" name="total_kilos">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddOrder-Payment-Method">Metode Pembayaran</label>
+                                    <select class="form-select" name="payment_method">
+                                        <option selected disabled> Pilih Metode Pembayaran </option>
+                                        <option value="cash">Cash</option>
+                                        <option value="qris">QRIS</option>
+                                        <option value="transfer">Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddOrder-Process-Method">Metode Proses</label>
+                                    <select class="form-select" name="process_method">
+                                        <option selected disabled> Pilih Metode Proses </option>
+                                        <option value="express">Express</option>
+                                        <option value="normal">Normal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12 text-end">
+                                <button type="button" class="btn btn-danger me-1" data-bs-dismiss="modal"><i
+                                        class="bx bx-x me-1"></i> Cancel</button>
+                                <button type="submit" class="btn btn-success" id="btn-save-event"><i
+                                        class="bx bx-check me-1"></i> Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 
     <!-- Modal Detail Order from Table -->
     <div class="modal fade orderdetailsModalTable" id="orderdetailsModalTable" tabindex="-1" role="dialog"
@@ -57,7 +129,11 @@
     <script>
         function formatCreatedAt(created_at) {
             const date = new Date(created_at);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
             return date.toLocaleDateString('id-ID', options); // Sesuaikan dengan locale yang sesuai
         }
 
@@ -190,7 +266,7 @@
                     "Pemesan",
                     {
                         name: "Actions",
-                        width: "100px",
+                        width: "6.25rem",
                         formatter: (cell) => gridjs.html(
                             `<button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="showOrderDetails(${cell})">
                                 Order Details

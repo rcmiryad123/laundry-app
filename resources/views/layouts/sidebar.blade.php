@@ -3,7 +3,8 @@
 
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        <a href="index" class="logo logo-dark">
+        {{--  <a href="index" class="logo logo-dark">  --}}
+        <a href="pages-maintenance" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="{{ URL::asset('build/images/logo-dark-sm.png') }}" alt="" height="50">
             </span>
@@ -12,7 +13,8 @@
             </span>
         </a>
 
-        <a href="index" class="logo logo-light">
+        {{--  <a href="index" class="logo logo-light">  --}}
+        <a href="pages-maintenance" class="logo logo-light">>
             <span class="logo-lg">
                 <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="50">
             </span>
@@ -33,7 +35,8 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
-                    <a href="index">
+                    {{--  <a href="index">  --}}
+                    <a href="pages-maintenance">
                         <i class="bx bx-home-alt icon nav-icon"></i>
                         <span class="menu-item">Dashboard</span>
                     </a>

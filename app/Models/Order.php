@@ -14,11 +14,13 @@ class Order extends Model
 
     // Kolom-kolom yang dapat diisi nilai nya
     protected $fillable = [
-        'no_order',
-        'billing_name',
-        'package',
+        'customer',
+        'total_berat',
+        'jenis_layanan',
+        'jenis_proses',
+        'jenis_pembayaran',
         'status',
-        'dead_line'
+        'dead_line',
     ];
 
     // Jika nama primary key di tabel Anda bukan 'id'

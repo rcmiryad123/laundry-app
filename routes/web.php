@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TopbarController;
-use App\Http\Controllers\PaketLaundryController;
 
 Auth::routes();
 
@@ -16,24 +15,19 @@ Route::middleware(['auth'])->group(function () {
     // Rute untuk topbar
     Route::get('/topbar', [TopbarController::class, 'index'])->name('topbar');
 
-    // Rute-rute terkait order
+    // Get all Order di tabel
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/on-going-orders', [OrderController::class, 'showOnGoingOrders'])->name('on-going-orders');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::put('/order/finish/{orderId}', [OrderController::class, 'finish'])->name('orders.finish');
-    Route::get('/orders/{orderId}', [OrderController::class, 'getOrderDetails']);
-
-    // Rute untuk logout
-    // Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    // Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-
-    // Rute Paket Laundry
-    Route::get('/paket-laundry/{nama_paket}', [PaketLaundryController::class, 'getByNamaPaket']);
+    // Get all Order di tabel JSON Format
+    Route::get('/orders/json', [OrderController::class, 'indexJson'])->name('orders.json');
+    // Get Order by ID
+    Route::get('/order/{order:id}', [OrderController::class, 'DetailsOrder'])->name('orders.details');
+    // Finished Order -- Memfinishkan Order yang sudah selesai
+    Route::get('/finish-order/{order:id}', [OrderController::class, 'FinishedOrder'])->name('orders.finished');
+    // Add Order
+    Route::post('/add-order', [OrderController::class, 'store'])->name('orders.add');
+    // Get Order by ID
+    Route::get('/invoices/{order:id}', [OrderController::class, 'InvoicesDetailsOrder'])->name('invoices.details');
 });
-
-// Rute-rute yang tidak memerlukan autentikasi
-Route::get('/orders/not-finished', [OrderController::class, 'getOrdersNotFinish']);
-Route::get('/all-orders', [OrderController::class, 'getOrdersAll']);
 
 // Rute untuk aplikasi SPA (Single Page Application)
 Route::get('/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '.*');

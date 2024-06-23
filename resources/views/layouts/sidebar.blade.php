@@ -45,8 +45,7 @@
                         <span class="menu-item">Orders</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="details-orders" data-key="t-products">Details Orders</a></li>
-                        <li><a href="on-going-order" data-key="t-product-detail">Completed Order</a></li>
+                        <li><a href="orders" data-key="t-products">Details Orders</a></li>
                     </ul>
                 </li>
 
